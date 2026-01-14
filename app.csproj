@@ -44,6 +44,7 @@
 
     <!-- Common Microsoft DLLs -->
     <Reference Include="$(PathBin)\System.Text.Json.dll" />
+    <Reference Include="$(PathBin)\System.Memory.dll" />
 
     <!-- Also load files in the Dependencies folder of the current App -->
     <Reference Include="Dependencies\*.dll" />
