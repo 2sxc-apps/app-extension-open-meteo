@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq
+
+@{
+  var ds = Kit.Data.GetSource(name: "OpenMeteo");
+  var daten = AsItems(ds["Default"]).Take(10).ToList();
+}
+
+<h3>Test Open-Meteo DataSource</h3>
+
+<ul>
+@foreach (var d in daten)
+{
+  <li>@d.String("Title") – @d.Int("Temperatur") °C</li>
+}
+</ul>
