@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="20.00.10" ExportDate="2026-01-15T07:52:42.1175842+01:00">
   <Header>
-    <App Guid="1d94b471-13cf-41bc-a4f7-10e09700c85b" />
+    <App Guid="" />
     <Language Default="en-us" />
     <Dimensions />
   </Header>
@@ -66,9 +66,9 @@
   <Entities>
     <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="9be467ec-e67c-416b-973e-f7a8789c9bd3" Json="True" KeyNumber="70">
       <Value Key="DebugLog" Value="Caller: Create; Line: 49; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Work\Apps.Sys\Work\AppCreate\AppCreator.cs&#xA;Caller: InitializeApp; Line: 46; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Work\Apps.Sys\Work\AppCreate\AppInitializer.cs&#xA;Message: App: 70; Number: 0&#xA;Caller: CheckIfAllPartsExist; Line: 55; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Work\Apps.Sys\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: App: 70; Number: 0&#xA;Message: Config: False, Resources: False, Settings: False; AllOk: False; Number: 0&#xA;Message: App Entity Count: 0; Number: 0&#xA;Message: App ContentType Count: 140; Number: 0&#xA;Message: App Metadata Count: 0; Number: 0&#xA;Message: Has Type App Config: 2SexyContent-App/2SexyContent-App - ToSic.Eav.Data.Sys.ContentTypes.ContentType; Number: 0&#xA;Message: Has Type App Resources: ; Number: 0&#xA;Message: Has Type App Settings: ; Number: 0&#xA;Message: Some parts missing: appConfig: ; appResources: : appSettings; ; Number: 0" Type="String" />
-      <Value Key="DisplayName" Value="Datasource Extension" Type="String" />
-      <Value Key="Folder" Value="Datasource Extension" Type="String" />
-      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="DisplayName" Value="app-extension-open-meteo" Type="String" />
+      <Value Key="Folder" Value="app-extension-open-meteo" Type="String" />
+      <Value Key="OriginalId" Value="" Type="String" OriginalId="" />
       <Value Key="Version" Value="00.00.20" Type="String" />
     </Entity>
     <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="85e756ca-ba64-4769-8ff6-9ab6b20bc975" KeyNumber="70" />
@@ -134,7 +134,7 @@
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="105142e2-d1bd-46c7-8ffc-4f8797831a50" Json="True" KeyGuid="d40dae33-2dc5-4b76-b15b-1f2f3b5a3b23">
       <Value Key="Description" Value="" Type="String" />
       <Value Key="Name" Value="OpenMeteoCurrent" Type="String" />
-      <Value Key="PartAssemblyAndType" Value="OpenMeteoCurrent" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="AppCode.Extensions.OpenMeteo.OpenMeteoCurrent" Type="String" />
       <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 380,&#xD;&#xA;  &quot;Left&quot;: 100&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="4c6ef61e-468a-48ca-8441-b699327d7d64" AttributeSetName="OpenMeteoConfiguration" EntityGUID="d06e19d3-e679-412f-a0f7-884dfaf4b2f1" KeyGuid="105142e2-d1bd-46c7-8ffc-4f8797831a50">
@@ -147,6 +147,6 @@
   </Entities>
   <PortalFiles />
   <PortalFolders>
-    <Folder Id="942" RelativePath="adam/Datasource Extension/" />
+    <Folder Id="942" RelativePath="adam/app-extension-open-meteo/" />
   </PortalFolders>
 </SexyContent>

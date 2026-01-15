@@ -2,9 +2,18 @@ using System;
 using System.Linq;
 using System.Net;
 using Custom.DataSource;
+using ToSic.Eav.DataSource;
+using ToSic.Eav.DataSource.VisualQuery; // This namespace is for the [Configuration] attribute
 
-namespace AppCode.Extensions.DataSourceOpenMeteo
+namespace AppCode.Extensions.OpenMeteo
 {
+  [VisualQuery(
+    NiceName = "OpenMeteo Weather Forecast",
+    UiHint = "Loads hourly forecast data from Open-Meteo",
+    Icon = "schedule",
+    HelpLink = "https://open-meteo.com",
+    ConfigurationType = "OpenMeteoConfiguration"
+  )]
   public class OpenMeteoForecast : DataSource16
   {
     public OpenMeteoForecast(Dependencies services) : base(services)
@@ -14,19 +23,14 @@ namespace AppCode.Extensions.DataSourceOpenMeteo
 
     private object GetForecast()
     {
-      var latitude     = Configuration.Get<double>("Latitude", fallback: 47.1674);
-      var longitude    = Configuration.Get<double>("Longitude", fallback: 9.4779);
-      var timezone     = Configuration.Get<string>("Timezone", fallback: "auto");
-      var forecastDays = Configuration.Get<int>("ForecastDays", fallback: 2);
-
       const string HourlyFields = "temperature_2m,wind_speed_10m,weather_code";
 
       var url =
         "https://api.open-meteo.com/v1/forecast" +
-        $"?latitude={latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}" +
-        $"&longitude={longitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}" +
-        $"&timezone={Uri.EscapeDataString(timezone)}" +
-        $"&forecast_days={forecastDays}" +
+        $"?latitude={Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}" +
+        $"&longitude={Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}" +
+        $"&timezone={Uri.EscapeDataString(Timezone)}" +
+        $"&forecast_days={ForecastDays}" +
         $"&hourly={Uri.EscapeDataString(HourlyFields)}";
 
       var json = Download(url);
@@ -46,6 +50,19 @@ namespace AppCode.Extensions.DataSourceOpenMeteo
         result.Longitude
       });
     }
+
+    // Configuration properties using [Configuration] attribute
+    [Configuration(Fallback = "47.1674")]
+    public double Latitude => Configuration.GetThis(47.1674);
+
+    [Configuration(Fallback = "9.4779")]
+    public double Longitude => Configuration.GetThis(9.4779);
+
+    [Configuration(Fallback = "auto")]
+    public string Timezone => Configuration.GetThis();
+
+    [Configuration(Fallback = "2")]
+    public int ForecastDays => Configuration.GetThis(2);
 
     private static string Download(string url)
     {

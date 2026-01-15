@@ -1,16 +1,16 @@
 {
   "nameId": "afd256f1-6dae-415b-9d26-0e3cfa6dc9eb",
-  "name": "Datasource Open Meteo",
+  "name": "Open Meteo (DataSource)",
   "teaser": "",
   "description": "",
   "createdBy": "2sic",
   "copyright": "",
   "linkMain": "",
-  "linkDocs": "",
+  "linkDocs": "https://go.2sxc.org/ext-openmeteo",
   "linkSource": "",
   "linkDemo": "",
   "version": "00.00.01",
-  "releases": null,
+  "releases": [],
   "isInstalled": false,
   "editionsSupported": false,
   "sxcSupported": false,
@@ -31,5 +31,6 @@
   "resourcesContentType": null,
   "settingsContentType": null,
   "inputFieldAssets": null,
-  "dataBundles": null
+  "dataBundles": null,
+  "extensionsBundled": ""
 }

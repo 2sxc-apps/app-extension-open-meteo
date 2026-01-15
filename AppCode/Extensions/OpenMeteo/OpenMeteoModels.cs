@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace AppCode.Extensions.DataSourceOpenMeteo
+namespace AppCode.Extensions.OpenMeteo
 {
   public class OpenMeteoResponse
   {
