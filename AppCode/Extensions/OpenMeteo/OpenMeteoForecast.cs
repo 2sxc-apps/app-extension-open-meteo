@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using Custom.DataSource;
 using ToSic.Eav.DataSource;
-using ToSic.Eav.DataSource.VisualQuery; // This namespace is for the [Configuration] attribute
+using ToSic.Eav.DataSource.VisualQuery; 
 
 namespace AppCode.Extensions.OpenMeteo
 {
@@ -51,7 +51,6 @@ namespace AppCode.Extensions.OpenMeteo
       });
     }
 
-    // Configuration properties using [Configuration] attribute
     [Configuration(Fallback = "47.1674")]
     public double Latitude => Configuration.GetThis(47.1674);
 
