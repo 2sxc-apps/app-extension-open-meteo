@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="20.00.10" ExportDate="2026-01-15T07:52:42.1175842+01:00">
+  <Header>
+    <App Guid="1d94b471-13cf-41bc-a4f7-10e09700c85b" />
+    <Language Default="en-us" />
+    <Dimensions />
+  </Header>
+  <AttributeSets>
+    <AttributeSet StaticName="App-Resources" Name="App-Resources" Scope="System.App" AlwaysShareConfiguration="false">
+      <Attributes />
+    </AttributeSet>
+    <AttributeSet StaticName="App-Settings" Name="App-Settings" Scope="System.App" AlwaysShareConfiguration="false">
+      <Attributes />
+    </AttributeSet>
+    <AttributeSet StaticName="4c6ef61e-468a-48ca-8441-b699327d7d64" Name="OpenMeteoConfiguration" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Latitude" Type="Number" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="578324bd-e825-40b1-a00a-6275953cf41c" Json="True" KeyNumber="1842">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="Latitude" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Longitude" Type="Number" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="2be73a63-eeec-49ba-8bfe-ce39991d648b" Json="True" KeyNumber="1843">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="Longitude" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Timezone" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="d0b1a2db-a08d-4510-9cca-e6b267f95e5d" Json="True" KeyNumber="1844">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Timezone" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="ForecastDays" Type="Number" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="38dc794d-edbd-4a43-9576-65101ff6b0f5" Json="True" KeyNumber="1845">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="ForecastDays" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Hourly" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a2ec8238-873f-4803-9ce3-869d238a32e0" Json="True" KeyNumber="1846">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Hourly" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="a02a9671-3535-4b93-84b5-0683975c31f0" Name="Test" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Number" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8707df53-226c-426d-a886-ac1940d27a9d" Json="True" KeyNumber="1848">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Number" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+  </AttributeSets>
+  <Entities>
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="9be467ec-e67c-416b-973e-f7a8789c9bd3" Json="True" KeyNumber="70">
+      <Value Key="DebugLog" Value="Caller: Create; Line: 49; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Work\Apps.Sys\Work\AppCreate\AppCreator.cs&#xA;Caller: InitializeApp; Line: 46; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Work\Apps.Sys\Work\AppCreate\AppInitializer.cs&#xA;Message: App: 70; Number: 0&#xA;Caller: CheckIfAllPartsExist; Line: 55; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Work\Apps.Sys\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: App: 70; Number: 0&#xA;Message: Config: False, Resources: False, Settings: False; AllOk: False; Number: 0&#xA;Message: App Entity Count: 0; Number: 0&#xA;Message: App ContentType Count: 140; Number: 0&#xA;Message: App Metadata Count: 0; Number: 0&#xA;Message: Has Type App Config: 2SexyContent-App/2SexyContent-App - ToSic.Eav.Data.Sys.ContentTypes.ContentType; Number: 0&#xA;Message: Has Type App Resources: ; Number: 0&#xA;Message: Has Type App Settings: ; Number: 0&#xA;Message: Some parts missing: appConfig: ; appResources: : appSettings; ; Number: 0" Type="String" />
+      <Value Key="DisplayName" Value="Datasource Extension" Type="String" />
+      <Value Key="Folder" Value="Datasource Extension" Type="String" />
+      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="Version" Value="00.00.20" Type="String" />
+    </Entity>
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="85e756ca-ba64-4769-8ff6-9ab6b20bc975" KeyNumber="70" />
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="7787fc05-bee9-4239-93ff-a428f63d083d" KeyNumber="70" />
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="ea48c490-5081-4bb1-b318-b2fa412c1977" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="Icon" Value="" Type="Hyperlink" />
+      <Value Key="Identifier" Value="" Type="String" />
+      <Value Key="IsHidden" Value="False" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Site" Type="String" />
+      <Value Key="Name" Value="Meteo" Type="String" />
+      <Value Key="Path" Value="Default.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean" />
+      <Value Key="SearchIndexingStreams" Value="" Type="String" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewController" Value="" Type="String" />
+      <Value Key="ViewNameInUrl" Value="" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="d40dae33-2dc5-4b76-b15b-1f2f3b5a3b23" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="Test" Type="String" />
+      <Value Key="Params" Value="ReplaceThis=27&#xA;ReplaceThisAsWell=[QueryString:Id]" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header" Type="String" />
+      <Value Key="StreamWiring" Value="7b7fd68b-bdf4-46da-8302-6fc10872ae85:Test&gt;af12d9e6-5a86-411d-bba8-d2efb65824b0:Default&#xD;&#xA;105142e2-d1bd-46c7-8ffc-4f8797831a50:Default&gt;Out:Default" Type="String" />
+      <Value Key="TestParameters" Value="[Demo:Demo]=true" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="7b7fd68b-bdf4-46da-8302-6fc10872ae85" Json="True" KeyGuid="d40dae33-2dc5-4b76-b15b-1f2f3b5a3b23">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 440,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="a02a9671-3535-4b93-84b5-0683975c31f0" AttributeSetName="Test" EntityGUID="358e79f0-21c5-48c1-affa-03236d6bdde6">
+      <Value Key="Number" Value="1212" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="a02a9671-3535-4b93-84b5-0683975c31f0" AttributeSetName="Test" EntityGUID="97551576-a4ca-47a1-b04f-342e421e41d8">
+      <Value Key="Number" Value="112" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="a02a9671-3535-4b93-84b5-0683975c31f0" AttributeSetName="Test" EntityGUID="87034402-575c-4f6d-940c-fe684d443204">
+      <Value Key="Number" Value="4124" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="af12d9e6-5a86-411d-bba8-d2efb65824b0" Json="True" KeyGuid="d40dae33-2dc5-4b76-b15b-1f2f3b5a3b23">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Value Filter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 160,&#xD;&#xA;  &quot;Left&quot;: 420&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.ValueFilter" AttributeSetName="ToSic.Eav.DataSources.ValueFilter" EntityGUID="a9d6916d-3770-4391-a98f-0bb382b6c186" Json="True" KeyGuid="af12d9e6-5a86-411d-bba8-d2efb65824b0">
+      <Value Key="Attribute" Value="Number" Type="String" />
+      <Value Key="Languages" Value="" Type="String" />
+      <Value Key="Operator" Value="==" Type="String" />
+      <Value Key="Take" Value="" Type="String" />
+      <Value Key="Value" Value="112" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="105142e2-d1bd-46c7-8ffc-4f8797831a50" Json="True" KeyGuid="d40dae33-2dc5-4b76-b15b-1f2f3b5a3b23">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="OpenMeteoCurrent" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="OpenMeteoCurrent" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 380,&#xD;&#xA;  &quot;Left&quot;: 100&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="4c6ef61e-468a-48ca-8441-b699327d7d64" AttributeSetName="OpenMeteoConfiguration" EntityGUID="d06e19d3-e679-412f-a0f7-884dfaf4b2f1" KeyGuid="105142e2-d1bd-46c7-8ffc-4f8797831a50">
+      <Value Key="ForecastDays" Value="" Type="Number" />
+      <Value Key="Hourly" Value="" Type="String" />
+      <Value Key="Latitude" Value="213" Type="Number" />
+      <Value Key="Longitude" Value="23" Type="Number" />
+      <Value Key="Timezone" Value="" Type="String" />
+    </Entity>
+  </Entities>
+  <PortalFiles />
+  <PortalFolders>
+    <Folder Id="942" RelativePath="adam/Datasource Extension/" />
+  </PortalFolders>
+</SexyContent>

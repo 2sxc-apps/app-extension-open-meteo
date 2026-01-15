@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@using AppCode.Extensions.DataSourceOpenMeteo
 
 @{
-  var ds = Kit.Data.GetSource(
-    name: "OpenMeteoCurrent",
+  var ds = Kit.Data.GetSource<OpenMeteoCurrent>(
     parameters: new {
       Latitude = 47.3769,
       Longitude = 8.5417,
@@ -11,7 +11,7 @@
     }
   );
 
-  var item = AsItems(ds["Default"]).FirstOrDefault();
+  var item = AsItems(ds).FirstOrDefault();
 }
 
 <h3>Open-Meteo Current</h3>
