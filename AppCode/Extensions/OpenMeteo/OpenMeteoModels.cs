@@ -17,10 +17,10 @@ namespace AppCode.Extensions.OpenMeteo
     public string Time { get; set; }
 
     [JsonPropertyName("temperature_2m")]
-    public double? Temperature2m { get; set; }
+    public double? Temperature { get; set; }
 
     [JsonPropertyName("wind_speed_10m")]
-    public double? WindSpeed10m { get; set; }
+    public double? WindSpeed { get; set; }
 
     [JsonPropertyName("weather_code")]
     public int? WeatherCode { get; set; }
@@ -31,10 +31,10 @@ namespace AppCode.Extensions.OpenMeteo
     public string[] Time { get; set; }
 
     [JsonPropertyName("temperature_2m")]
-    public double?[] Temperature2m { get; set; }
+    public double?[] Temperature { get; set; }
 
     [JsonPropertyName("wind_speed_10m")]
-    public double?[] WindSpeed10m { get; set; }
+    public double?[] WindSpeed { get; set; }
 
     [JsonPropertyName("weather_code")]
     public int?[] WeatherCode { get; set; }

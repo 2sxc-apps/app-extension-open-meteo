@@ -6,7 +6,15 @@ using ToSic.Eav.DataSource.VisualQuery;
 
 namespace AppCode.Extensions.OpenMeteo
 {
-    [VisualQuery(
+  /// <summary>
+  /// DataSource which loads the current weather conditions from the Open-Meteo API.
+  /// <br/>
+  /// Returns a single record containing the current temperature, wind speed,
+  /// weather code and timestamp for the configured location.
+  /// <br/>
+  /// Intended for use in Visual Queries or directly in Razor code.
+  /// </summary>
+  [VisualQuery(
     NiceName = "OpenMeteo Current Weather",
     UiHint = "Loads current weather data from Open-Meteo",
     Icon = "wb_sunny",
@@ -19,26 +27,27 @@ namespace AppCode.Extensions.OpenMeteo
     {
       ProvideOut(GetCurrent);
     }
-
+    /// <summary>
+    /// Fetches the current weather data from Open-Meteo
+    /// and returns it as a single record.
+    /// </summary>
     private object GetCurrent()
     {
-      const string CurrentFields = "temperature_2m,wind_speed_10m,weather_code";
+      const string fields = "temperature_2m,wind_speed_10m,weather_code";
 
-      var url =
-        "https://api.open-meteo.com/v1/forecast" +
-        $"?latitude={Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}" +
-        $"&longitude={Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}" +
-        $"&timezone={Uri.EscapeDataString(Timezone)}" +
-        $"&current={Uri.EscapeDataString(CurrentFields)}";
-
-      var json = Download(url);
-      var result = Kit.Convert.Json.To<OpenMeteoResponse>(json);
+      var result = OpenMeteoHelpers.Download(
+        Kit,
+        Latitude,
+        Longitude,
+        Timezone,
+        $"&current={Uri.EscapeDataString(fields)}"
+      );
 
       return new
       {
         result.Current.Time,
-        result.Current.Temperature2m,
-        result.Current.WindSpeed10m,
+        result.Current.Temperature,
+        result.Current.WindSpeed,
         result.Current.WeatherCode,
         result.Timezone,
         result.Latitude,
@@ -46,20 +55,13 @@ namespace AppCode.Extensions.OpenMeteo
       };
     }
 
-    [Configuration(Fallback = "47.1674")]
+    [Configuration()]
     public double Latitude => Configuration.GetThis(47.1674);
 
-    [Configuration(Fallback = "9.4779")]
+    [Configuration()]
     public double Longitude => Configuration.GetThis(9.4779);
 
-    [Configuration(Fallback = "auto")]
-    public string Timezone => Configuration.GetThis();
-
-    private static string Download(string url)
-    {
-      using var wc = new WebClient();
-      wc.Headers.Add("User-Agent", "2sxc OpenMeteo DataSource");
-      return wc.DownloadString(url);
-    }
+    [Configuration()]
+    public string Timezone => Configuration.GetThis("auto");
   }
 }

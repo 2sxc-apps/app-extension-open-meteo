@@ -2,6 +2,10 @@
 @using System.Linq
 @using AppCode.Extensions.OpenMeteo
 
+@* TODO: PLACE TEST FILES OUTSIDE OF EXTENSION *@
+
+@* todo: create some tests without parameters, so see that it "just works" *@
+
 @{
   var ds = Kit.Data.GetSource<OpenMeteoForecast>(
     parameters: new {
@@ -32,8 +36,8 @@
   {
     <tr>
       <td>@i.String("Time")</td>
-      <td>@i.Double("Temperature2m")</td>
-      <td>@i.Double("WindSpeed10m")</td>
+      <td>@i.Double("Temperature")</td>
+      <td>@i.Double("WindSpeed")</td>
       <td>@i.Double("WeatherCode")</td>
     </tr>
   }
