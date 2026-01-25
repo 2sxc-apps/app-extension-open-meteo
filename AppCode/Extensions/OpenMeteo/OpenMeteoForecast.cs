@@ -60,7 +60,6 @@ namespace AppCode.Extensions.OpenMeteo
         });
     }
 
-// TODO: @2rb - still using multiple fallbacks here - in the attribute and the API
     [Configuration(Fallback = "47.1674")]
     public double Latitude => Configuration.GetThis(47.1674);
 

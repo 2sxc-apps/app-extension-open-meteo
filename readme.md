@@ -27,3 +27,9 @@ If that's not enough, you should start with a more sophisticated template such a
 
 1. 2dm: Created configuration to export content-type to proper namespace & folder
 1. 2dm: Placed OpenMeteoConfiguration in correct Extensions namespace
+1. 2dm: Extended the resulting data to return JSON for further use
+1. 2dm: Made internal models `internal` instead of `public` as they are not used outside
+1. 2dm: Attempted to make OpenMeteoCurrent use typed data instead of dynamic - but it looks like OpenMeteoCurrent actually doesn't work
+1. 2dm: Introduced translation of weather codes in OpenMeteoCurrent
+1. 2dm: Fixed OpenMeteoForecast to use configuration values for lat/long
+1. 2dm: Created sample of Typed output
