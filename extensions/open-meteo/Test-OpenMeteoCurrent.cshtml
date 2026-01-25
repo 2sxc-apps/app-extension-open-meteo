@@ -7,6 +7,7 @@
       Latitude = 47.3769,
       Longitude = 8.5417,
       Timezone = "auto",
+      // TODO: THIS IS PROBABLY A BUG / NOT USED, PLS FIX
       Current = "temperature_2m,wind_speed_10m,weather_code"
     }
   );
@@ -27,7 +28,7 @@ else
     <li>Temp: @item.Double("Temperature") °C</li>
     <li>Wind: @item.Double("WindSpeed")</li>
     <li>Code: @item.Double("WeatherCode")</li>
-    <li>Lat/Lon: @item.Double("Latitude"), @item.Double("Longitude")</li>
+    <li>Lat/Long: @item.Double("Latitude"), @item.Double("Longitude")</li>
     <li>Timezone: @item.String("Timezone")</li>
   </ul>
 }

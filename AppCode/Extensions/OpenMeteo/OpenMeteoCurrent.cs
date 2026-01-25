@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
 using ToSic.Eav.DataSource;
 using ToSic.Eav.DataSource.VisualQuery;
@@ -19,7 +20,7 @@ namespace AppCode.Extensions.OpenMeteo
     UiHint = "Loads current weather data from Open-Meteo",
     Icon = "wb_sunny",
     HelpLink = "https://open-meteo.com",
-    ConfigurationType = "OpenMeteoConfiguration"
+    ConfigurationType = nameof(OpenMeteoConfiguration)
   )]
   public class OpenMeteoCurrent : DataSource16
   {

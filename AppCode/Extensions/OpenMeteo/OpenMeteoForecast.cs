@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Net;
+using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
 using ToSic.Eav.DataSource;
 using ToSic.Eav.DataSource.VisualQuery;
@@ -15,13 +15,12 @@ namespace AppCode.Extensions.OpenMeteo
   /// <br/>
   /// Intended for use in Visual Queries or directly in Razor code.
   /// </summary>
-
   [VisualQuery(
     NiceName = "OpenMeteo Weather Forecast",
     UiHint = "Loads hourly forecast data from Open-Meteo",
     Icon = "schedule",
     HelpLink = "https://open-meteo.com",
-    ConfigurationType = "OpenMeteoConfiguration"
+    ConfigurationType = nameof(OpenMeteoConfiguration)
   )]
   public class OpenMeteoForecast : DataSource16
   {
@@ -61,6 +60,7 @@ namespace AppCode.Extensions.OpenMeteo
         });
     }
 
+// TODO: @2rb - still using multiple fallbacks here - in the attribute and the API
     [Configuration(Fallback = "47.1674")]
     public double Latitude => Configuration.GetThis(47.1674);
 

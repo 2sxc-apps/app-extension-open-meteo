@@ -20,3 +20,10 @@ Since you chose the empty template, it doesn't include the instructions in the w
 The [docs](https://docs.2sxc.org/basics/app/folders-and-files/index.html) should give you some insights.
 
 If that's not enough, you should start with a more sophisticated template such as **app-template-basic**.
+
+## History
+
+### 2026-01-25
+
+1. 2dm: Created configuration to export content-type to proper namespace & folder
+1. 2dm: Placed OpenMeteoConfiguration in correct Extensions namespace
