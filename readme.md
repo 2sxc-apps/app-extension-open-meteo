@@ -23,6 +23,10 @@ If that's not enough, you should start with a more sophisticated template such a
 
 ## History
 
+### 2026-01-26
+
+1. 2dm: Simplified `OpenMeteoResultModel` to use the CustomModel base class
+
 ### 2026-01-25
 
 1. 2dm: Created configuration to export content-type to proper namespace & folder
