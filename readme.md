@@ -23,9 +23,13 @@ If that's not enough, you should start with a more sophisticated template such a
 
 ## History
 
+### 2026-01-27
+1. 2rb: `OpenMeteoForecast` improved to work with `OpenMeteoResult`
+
 ### 2026-01-26
 
 1. 2dm: Simplified `OpenMeteoResultModel` to use the CustomModel base class
+1. 2rb: Moved test views to right location
 
 ### 2026-01-25
 

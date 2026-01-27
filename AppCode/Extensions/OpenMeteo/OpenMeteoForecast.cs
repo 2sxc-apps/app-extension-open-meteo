@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
@@ -8,15 +9,15 @@ using ToSic.Eav.DataSource.VisualQuery;
 namespace AppCode.Extensions.OpenMeteo
 {
   /// <summary>
-  /// DataSource which loads the hourly weather forecast from the Open-Meteo API.
+  /// DataSource which loads an hourly forecast from the Open-Meteo API.
   /// <br/>
-  /// Returns a list of forecast records (one per hour) including temperature,
-  /// wind speed, weather code and timestamp for the configured location.
+  /// Returns one record per hour containing time, temperature, wind speed and weather code
+  /// for the configured location.
   /// <br/>
-  /// Intended for use in Visual Queries or directly in Razor code.
+  /// Uses the strongly typed OpenMeteoResult model.
   /// </summary>
   [VisualQuery(
-    NiceName = "OpenMeteo Weather Forecast",
+    NiceName = "OpenMeteo Forecast",
     UiHint = "Loads hourly forecast data from Open-Meteo",
     Icon = "schedule",
     HelpLink = "https://open-meteo.com",
@@ -28,48 +29,70 @@ namespace AppCode.Extensions.OpenMeteo
     {
       ProvideOut(GetForecast);
     }
-    /// <summary>
-    /// Fetches the hourly forecast data from Open-Meteo
-    /// and returns it as a list 
-    /// </summary>
-    private object GetForecast()
+
+    private IEnumerable<object> GetForecast()
     {
-      const string fields = "temperature_2m,wind_speed_10m,weather_code";
+      // Keep hourly fields as an implementation detail of the DataSource
+      const string hourlyFields = "temperature_2m,wind_speed_10m,weather_code";
+
+      var extras =
+        $"&hourly={Uri.EscapeDataString(hourlyFields)}" +
+        $"&forecast_days={ForecastDays}";
 
       var result = OpenMeteoHelpers.Download(
         Kit,
         Latitude,
         Longitude,
         Timezone,
-        $"&forecast_days={ForecastDays}&hourly={Uri.EscapeDataString(fields)}"
+        extras
       );
 
-      var times = result.Hourly?.Time ?? Array.Empty<string>();
+      var hourly = result.Hourly;
 
-      return Enumerable.Range(0, times.Length)
-        .Select(i => new
+
+      // Ensure we don't index out of range if some arrays are missing/shorter
+      var count = new[]
+      {
+        hourly.Time?.Length ?? 0,
+        hourly.Temperature?.Length ?? 0,
+        hourly.WindSpeed?.Length ?? 0,
+        hourly.WeatherCode?.Length ?? 0
+      }.Where(l => l > 0).DefaultIfEmpty(0).Min();
+
+      if (count == 0)
+        return Array.Empty<object>();
+
+      return Enumerable.Range(0, count).Select(index =>
+      {
+        var code = hourly.WeatherCode?[index] ?? 0;
+
+        return new
         {
-          Id = i + 1,
-          Time = times[i],
-          Temperature = result.Hourly?.Temperature?.ElementAtOrDefault(i),
-          WindSpeed = result.Hourly?.WindSpeed?.ElementAtOrDefault(i),
-          WeatherCode = result.Hourly?.WeatherCode?.ElementAtOrDefault(i),
+          // keep property names aligned with your Razor sample
+          Time = hourly.Time[index],
+          Temperature = hourly.Temperature?[index],
+          WindSpeed = hourly.WindSpeed?[index],
+          WeatherCode = hourly.WeatherCode?[index],
+
+          Weather = OpenMeteoConstants.WeatherInterpretationCodes.TryGetValue(code, out var desc) ? desc : "Unknown",
           result.Timezone,
           result.Latitude,
-          result.Longitude
-        });
+          result.Longitude,
+          result.Json
+        };
+      });
     }
 
-    [Configuration(Fallback = "47.1674")]
+    [Configuration()]
     public double Latitude => Configuration.GetThis(47.1674);
 
-    [Configuration(Fallback = "9.4779")]
+    [Configuration()]
     public double Longitude => Configuration.GetThis(9.4779);
 
-    [Configuration(Fallback = "auto")]
-    public string Timezone => Configuration.GetThis();
+    [Configuration()]
+    public string Timezone => Configuration.GetThis("auto");
 
-    [Configuration(Fallback = "2")]
+    [Configuration()]
     public int ForecastDays => Configuration.GetThis(2);
   }
 }
