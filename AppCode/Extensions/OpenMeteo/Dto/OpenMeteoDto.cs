@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -35,8 +37,8 @@ namespace AppCode.Extensions.OpenMeteo
       Json
     };
 
-    public object ToForecastModels() => (Hourly?.Time == null)
-      ? new object[0]
+    public IEnumerable<object> ToForecastModels() => (Hourly?.Time == null)
+      ? Array.Empty<object>() //  new object[0]
       : Hourly.Time.Select((time, index) => new
       {
         When = time,

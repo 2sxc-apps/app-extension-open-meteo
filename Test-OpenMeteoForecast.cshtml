@@ -42,7 +42,7 @@
   @foreach (var item in itemsWithParams)
   {
     <tr>
-      <td>@item.String("Time", fallback: "-")</td>
+      <td>@item.String("When", fallback: "-")</td>
       <td>@item.Double("Temperature", required: false)</td>
       <td>@item.Double("WindSpeed", required: false)</td>
       <td>@item.Double("WeatherCode", required: false)</td>
@@ -72,7 +72,7 @@
   @foreach (var item in itemsNoParams)
   {
     <tr>
-      <td>@item.String("Time", fallback: "-")</td>
+      <td>@item.String("When", fallback: "-")</td>
       <td>@item.Double("Temperature", required: false)</td>
       <td>@item.Double("WindSpeed", required: false)</td>
       <td>@item.Double("WeatherCode", required: false)</td>

@@ -32,23 +32,12 @@ namespace AppCode.Extensions.OpenMeteo
 
     private IEnumerable<object> GetForecast()
     {
-      // Keep hourly fields as an implementation detail of the DataSource
-      const string hourlyFields = "temperature_2m,wind_speed_10m,weather_code";
-
-      var extras =
-        $"&hourly={Uri.EscapeDataString(hourlyFields)}" +
-        $"&forecast_days={ForecastDays}";
-
-      var result = OpenMeteoHelpers.Download(
-        Kit,
-        Latitude,
-        Longitude,
-        Timezone,
-        extras
+      var result = OpenMeteoHelpers.Download(Kit, Latitude, Longitude, Timezone,
+        $"&hourly={OpenMeteoConstants.ExpectedFields}" +
+        $"&forecast_days={ForecastDays}"
       );
 
       var hourly = result.Hourly;
-
 
       // Ensure we don't index out of range if some arrays are missing/shorter
       var count = new[]
@@ -59,28 +48,9 @@ namespace AppCode.Extensions.OpenMeteo
         hourly.WeatherCode?.Length ?? 0
       }.Where(l => l > 0).DefaultIfEmpty(0).Min();
 
-      if (count == 0)
-        return Array.Empty<object>();
-
-      return Enumerable.Range(0, count).Select(index =>
-      {
-        var code = hourly.WeatherCode?[index] ?? 0;
-
-        return new
-        {
-          // keep property names aligned with your Razor sample
-          Time = hourly.Time[index],
-          Temperature = hourly.Temperature?[index],
-          WindSpeed = hourly.WindSpeed?[index],
-          WeatherCode = hourly.WeatherCode?[index],
-
-          Weather = OpenMeteoConstants.WeatherInterpretationCodes.TryGetValue(code, out var desc) ? desc : "Unknown",
-          result.Timezone,
-          result.Latitude,
-          result.Longitude,
-          result.Json
-        };
-      });
+      return count == 0
+        ? Array.Empty<object>()
+        : result.ToForecastModels();
     }
 
     [Configuration(Fallback = "47.1674")]
