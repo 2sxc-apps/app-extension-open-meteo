@@ -31,27 +31,20 @@ namespace AppCode.Extensions.OpenMeteo
     }
 
     private IEnumerable<object> GetForecast()
-    {
-      var result = OpenMeteoHelpers.Download(Kit, Latitude, Longitude, Timezone,
-        $"&hourly={OpenMeteoConstants.ExpectedFields}" +
-        $"&forecast_days={ForecastDays}"
-      );
+{
+  var result = OpenMeteoHelpers.Download(
+    Kit,
+    Latitude,
+    Longitude,
+    Timezone,
+    $"&hourly={OpenMeteoConstants.ExpectedFields}" +
+    $"&forecast_days={ForecastDays}"
+  );
 
-      var hourly = result.Hourly;
-
-      // Ensure we don't index out of range if some arrays are missing/shorter
-      var count = new[]
-      {
-        hourly.Time?.Length ?? 0,
-        hourly.Temperature?.Length ?? 0,
-        hourly.WindSpeed?.Length ?? 0,
-        hourly.WeatherCode?.Length ?? 0
-      }.Where(l => l > 0).DefaultIfEmpty(0).Min();
-
-      return count == 0
-        ? Array.Empty<object>()
-        : result.ToForecastModels();
-    }
+  return result.Hourly?.Time?.Length > 0
+    ? result.ToForecastModels()
+    : Array.Empty<object>();
+}
 
     [Configuration(Fallback = "47.1674")]
     public double Latitude => Configuration.GetThis(47.1674);

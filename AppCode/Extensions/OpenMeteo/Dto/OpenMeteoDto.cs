@@ -38,12 +38,13 @@ namespace AppCode.Extensions.OpenMeteo
     };
 
     public IEnumerable<object> ToForecastModels() => (Hourly?.Time == null)
-      ? Array.Empty<object>() //  new object[0]
+      ? Array.Empty<object>() 
       : Hourly.Time.Select((time, index) => new
       {
         When = time,
         Temperature = Hourly.Temperature?[index],
         WindSpeed = Hourly.WindSpeed?[index],
+        Weather = OpenMeteoConstants.GetDescription(Hourly.WeatherCode?[index] ?? 0),
         WeatherCode = Hourly.WeatherCode?[index],
         Timezone,
         Latitude,

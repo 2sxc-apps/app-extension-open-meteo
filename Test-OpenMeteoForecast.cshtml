@@ -1,14 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using System.Linq
 @using AppCode.Extensions.OpenMeteo
-
-@*
-  Note:
-  These are demo/test Razor files. brav
-*@
+@using AppCode.Extensions.OpenMeteo.Data
 
 @{
-  // Test 1: Explicit parameters (typical usage)
   var forecastWithParams = Kit.Data.GetSource<OpenMeteoForecast>(
     parameters: new
     {
@@ -19,12 +14,14 @@
     }
   );
 
-  // Do not assume properties must exist; allow missing props without throwing.
-  var itemsWithParams = AsItems(forecastWithParams, propsRequired: false).Take(24).ToList();
+  var itemsWithParams = AsList<OpenMeteoResultModel>(forecastWithParams)
+    .Take(24)
+    .ToList();
 
-  // Test 2: No parameters (should "just work" if the DataSource has sensible defaults)
   var forecastNoParams = Kit.Data.GetSource<OpenMeteoForecast>();
-  var itemsNoParams = AsItems(forecastNoParams, propsRequired: false).Take(6).ToList();
+  var itemsNoParams = AsList<OpenMeteoResultModel>(forecastNoParams)
+    .Take(6)
+    .ToList();
 }
 
 <h3>Open-Meteo Forecast (with parameters, next @itemsWithParams.Count hours)</h3>
@@ -36,16 +33,18 @@
       <th>Temp (°C)</th>
       <th>Wind</th>
       <th>Code</th>
+      <th>Weather</th>
     </tr>
   </thead>
   <tbody>
   @foreach (var item in itemsWithParams)
   {
     <tr>
-      <td>@item.String("When", fallback: "-")</td>
-      <td>@item.Double("Temperature", required: false)</td>
-      <td>@item.Double("WindSpeed", required: false)</td>
-      <td>@item.Double("WeatherCode", required: false)</td>
+      <td>@item.When</td>
+      <td>@item.Temperature</td>
+      <td>@item.WindSpeed</td>
+      <td>@item.WeatherCode</td>
+      <td>@item.Weather</td>
     </tr>
   }
   </tbody>
@@ -54,10 +53,6 @@
 <hr />
 
 <h3>Open-Meteo Forecast (no parameters, sample @itemsNoParams.Count rows)</h3>
-
-<p>
-  This verifies the DataSource can run without parameters (it must provide defaults internally).
-</p>
 
 <table class="table">
   <thead>
@@ -72,10 +67,10 @@
   @foreach (var item in itemsNoParams)
   {
     <tr>
-      <td>@item.String("When", fallback: "-")</td>
-      <td>@item.Double("Temperature", required: false)</td>
-      <td>@item.Double("WindSpeed", required: false)</td>
-      <td>@item.Double("WeatherCode", required: false)</td>
+      <td>@item.When</td>
+      <td>@item.Temperature</td>
+      <td>@item.WindSpeed</td>
+      <td>@item.WeatherCode</td>
     </tr>
   }
   </tbody>
