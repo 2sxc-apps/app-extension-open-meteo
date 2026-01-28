@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 
-namespace AppCode.Extensions.OpenMeteo.Data
+namespace AppCode.Extensions.OpenMeteo
 {
-  public class OpenMeteoConstants {
+  internal class OpenMeteoConstants {
+
+    public const string ExpectedFields = "temperature_2m,wind_speed_10m,weather_code";
+
     public static Dictionary<int, string> WeatherInterpretationCodes = new Dictionary<int, string>
     {
       { 0, "Clear sky" },
@@ -34,5 +37,12 @@ namespace AppCode.Extensions.OpenMeteo.Data
       { 96, "Thunderstorm with hail" },
       { 99, "Thunderstorm with severe hail" }
     };
+
+    public static string GetDescription(int code)
+    {
+      return WeatherInterpretationCodes.TryGetValue(code, out var description)
+        ? description
+        : "Unknown";
+    }
   }
 }

@@ -36,27 +36,11 @@ namespace AppCode.Extensions.OpenMeteo
     {
       const string fields = "temperature_2m,wind_speed_10m,weather_code";
 
-      var result = OpenMeteoHelpers.Download(
-        Kit,
-        Latitude,
-        Longitude,
-        Timezone,
+      var result = OpenMeteoHelpers.Download(Kit, Latitude, Longitude, Timezone,
         $"&current={Uri.EscapeDataString(fields)}"
       );
 
-      return new
-      {
-        When = result.Current.Time,
-        result.Current.Temperature,
-        result.Current.WindSpeed,
-        Weather = OpenMeteoConstants.WeatherInterpretationCodes
-          .TryGetValue(result.Current.WeatherCode ?? 0, out var codeDesc) ? codeDesc : "Unknown",
-        result.Current.WeatherCode,
-        result.Timezone,
-        result.Latitude,
-        result.Longitude,
-        result.Json
-      };
+      return result.ToCurrentModel();
     }
 
     [Configuration(Fallback = "47.1674")]

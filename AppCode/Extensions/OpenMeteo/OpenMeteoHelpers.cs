@@ -8,7 +8,7 @@ namespace AppCode.Extensions.OpenMeteo
   {
     private const string BaseUrl = "https://api.open-meteo.com/v1/forecast";
 
-    internal static OpenMeteoResponse Download(
+    internal static OpenMeteoDto Download(
       ServiceKitLight16 kit,
       double latitude,
       double longitude,
@@ -26,7 +26,7 @@ namespace AppCode.Extensions.OpenMeteo
       wc.Headers.Add("User-Agent", "2sxc OpenMeteo DataSource");
 
       var json = wc.DownloadString(url);
-      var result = kit.Convert.Json.To<OpenMeteoResponse>(json);
+      var result = kit.Convert.Json.To<OpenMeteoDto>(json);
       result.Json = json;
       return result;
     }
