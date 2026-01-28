@@ -83,16 +83,16 @@ namespace AppCode.Extensions.OpenMeteo
       });
     }
 
-    [Configuration()]
+    [Configuration(Fallback = "47.1674")]
     public double Latitude => Configuration.GetThis(47.1674);
 
-    [Configuration()]
+    [Configuration(Fallback = "9.4779")]
     public double Longitude => Configuration.GetThis(9.4779);
 
-    [Configuration()]
-    public string Timezone => Configuration.GetThis("auto");
+    [Configuration(Fallback = "auto")]
+    public string Timezone => Configuration.GetThis();
 
-    [Configuration()]
+    [Configuration(Fallback = "2")]
     public int ForecastDays => Configuration.GetThis(2);
   }
 }
