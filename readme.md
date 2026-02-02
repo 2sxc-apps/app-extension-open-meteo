@@ -29,6 +29,8 @@ If that's not enough, you should start with a more sophisticated template such a
 1. 2rb: Removed unnecessary `Uri.EscapeDataString()` call for constant fields
 1. 2rb: Removed redundant null check in `OpenMeteoForecast.GetForecast()` (already handled in `ToForecastModels()`)
 1. 2rb: Changed `OpenMeteoHelpers` class from `public` to `internal`
+1. 2rb: Added XML documentation to several files
+1. 2rb: Refactored `OpenMeteoHelpers.Download()` extracted URL building and JSON download into separate methods for clarity
 
 ### 2026-01-30
 

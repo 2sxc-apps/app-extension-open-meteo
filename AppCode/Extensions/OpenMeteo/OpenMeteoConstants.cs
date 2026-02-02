@@ -2,10 +2,19 @@ using System.Collections.Generic;
 
 namespace AppCode.Extensions.OpenMeteo
 {
-  internal class OpenMeteoConstants {
-
+  /// <summary>
+  /// Contains constants and mappings for Open-Meteo weather API integration.
+  /// </summary>
+  internal class OpenMeteoConstants
+  {
+    /// <summary>
+    /// Comma-separated list of fields requested from Open-Meteo API
+    /// </summary>
     public const string ExpectedFields = "temperature_2m,wind_speed_10m,weather_code";
 
+    /// <summary>
+    /// Weather Codes mapping to readable descriptions
+    /// </summary>
     public static Dictionary<int, string> WeatherInterpretationCodes = new Dictionary<int, string>
     {
       { 0, "Clear sky" },
@@ -38,6 +47,11 @@ namespace AppCode.Extensions.OpenMeteo
       { 99, "Thunderstorm with severe hail" }
     };
 
+    /// <summary>
+    /// Gets the weather description for a WMO code.
+    /// </summary>
+    /// <param name="code">WMO weather code (e.g., 0, 1, 61, 95)</param>
+    /// <returns>Human-readable weather description, or "Unknown" if code not found</returns>
     public static string GetDescription(int code)
     {
       return WeatherInterpretationCodes.TryGetValue(code, out var description)
