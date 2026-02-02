@@ -5,21 +5,26 @@
 
 <h3>Current Weather</h3>
 @{
+  // Create a data source for current weather data from OpenMeteo API
+  // Parameters specify the location and timezone settings
   var currentDs = Kit.Data.GetSource<OpenMeteoCurrent>(parameters: new {
-    Latitude = 47.1674,
-    Longitude = 9.4779,
-    Timezone = "auto"
+    Latitude = 47.1674,   // Latitude coordinate for the location
+    Longitude = 9.4779,   // Longitude coordinate for the location
+    Timezone = "auto"     // Automatically detect timezone based on coordinates
   });
 
+  // Convert the first result from the data source into a dynamic item
+  // propsRequired: false allows the item to be null if no data is returned
   var current = AsItem(currentDs.List.FirstOrDefault(), propsRequired: false);
 }
 
 @if (current == null) {
+  // Display message if the API didn't return any weather data
   <p>No data</p>
 }
 else {
-  <p><strong>Time:</strong> @current.String("When")</p>
-  <p><strong>Temperature:</strong> @current.Double("Temperature") °C</p>
-  <p><strong>Weather:</strong> @current.String("Weather")</p>
-  <p><strong>Wind Speed:</strong> @current.Double("WindSpeed") km/h</p>
+  // Display the current weather information retrieved from the API
+  <p><strong>Time:</strong> @current.String("When")</p>                         @* Timestamp of the weather reading *@
+  <p><strong>Temperature:</strong> @current.Double("Temperature") °C</p>        @* Current temperature in Celsius *@
+  <p><strong>Weather:</strong> @current.String("Weather")</p>                   @* Weather condition description *@
 }
