@@ -40,7 +40,9 @@ namespace AppCode.Extensions.OpenMeteo
       return result;
     }
 
-    /// <summary>Builds the complete API URL with all query parameters.</summary>
+    /// <summary>
+    /// Builds the complete API URL with all query parameters.
+    /// </summary>
     private static string BuildUrl(ServiceKitLight16 kit, double latitude, double longitude, string timezone, string extraQuery)
       => BaseUrl +
         $"?latitude={kit.Convert.ForCode(latitude)}" +
@@ -48,7 +50,9 @@ namespace AppCode.Extensions.OpenMeteo
         $"&timezone={Uri.EscapeDataString(timezone)}" +
         extraQuery;
 
-    /// <summary>Downloads JSON string from the specified URL with appropriate headers.</summary>
+    /// <summary>
+    /// Downloads JSON string from the specified URL with appropriate headers.
+    /// </summary>
     private static string DownloadJson(string url)
     {
       var response = HttpClient.GetAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();

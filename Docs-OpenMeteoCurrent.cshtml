@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.RazorTyped
-@using System.Linq
 @using AppCode.Extensions.OpenMeteo
 @using AppCode.Extensions.OpenMeteo.Data
 
@@ -7,25 +6,33 @@
 @{
   // Create a data source for current weather data from OpenMeteo API
   // Parameters specify the location and timezone settings
-  var currentDs = Kit.Data.GetSource<OpenMeteoCurrent>(parameters: new {
-    Latitude = 47.1674,   // Latitude of the location
-    Longitude = 9.4779,   // Longitude of the location
-    Timezone = "auto"     // Use timezone of coordinates
+  var currentDs = Kit.Data.GetSource<OpenMeteoCurrent>(parameters: new OpenMeteoParameters() {
+    Latitude = 47.1674, // Vaduz, Liechtenstein
+    Longitude = 9.4779, // Vaduz, Liechtenstein
   });
 
   // Use the strongly-typed model
   var current = As<OpenMeteoResult>(currentDs);
 }
 
+@* Display message if the API didn't return any weather data, then exit *@
 @if (current == null)
 {
-  // Display message if the API didn't return any weather data
-  <p>No data</p>
+  <div class="alert alert-warning">
+    No data available
+  </div>
+  return;
 }
-else
-{
-  // Display the current weather information retrieved from the API
-  <p><strong>Time:</strong> @current.When</p>
-  <p><strong>Temperature:</strong> @current.Temperature °C</p>
-  <p><strong>Weather:</strong> @current.Weather</p>
-}
+
+@* Display the current weather information retrieved from the API *@
+<ol>
+  <li>
+    <strong>When:</strong> @current.When
+  </li>
+  <li>
+    <strong>Temperature:</strong> @current.Temperature °C
+  </li>
+  <li>
+    <strong>Weather:</strong> @current.Weather
+  </li>
+</ol>

@@ -36,6 +36,8 @@ If that's not enough, you should start with a more sophisticated template such a
 1. 2rb: Added static `HttpClient` instance with User-Agent header to `OpenMeteoHelpers`
 1. 2rb: Used `ConfigureAwait(false)` with synchronous result pattern
 1. 2rb: Added Title to Current View
+1. 2dm: introduced strongly typed parameters `OpenMeteoParameters` with XML documentation
+1. 2dm: Slimmed down code a bit more, especially using `if()...return` pattern
 
 ### 2026-01-30
 

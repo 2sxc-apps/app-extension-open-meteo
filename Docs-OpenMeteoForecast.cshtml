@@ -3,49 +3,50 @@
 @using AppCode.Extensions.OpenMeteo
 @using AppCode.Extensions.OpenMeteo.Data
 
-<h3>Weather Forecast</h3>
 @{
   // Create a data source for hourly weather forecast from OpenMeteo API
   // Returns one record per hour for the specified number of forecast days
-  var forecastDs = Kit.Data.GetSource<OpenMeteoForecast>(parameters: new {
-    Latitude = 47.1674,       // Latitude of the location (Vaduz, Liechtenstein)
-    Longitude = 9.4779,       // Longitude of the location
-    Timezone = "auto",        // Use timezone of coordinates
-    ForecastDays = 1          // Number of days to forecast (1 day = 24 hours)
+  var forecastDs = Kit.Data.GetSource<OpenMeteoForecast>(parameters: new OpenMeteoParameters() {
+    Latitude = 47.1674, // Vaduz, Liechtenstein
+    Longitude = 9.4779, // Vaduz, Liechtenstein
+    ForecastDays = 1    // Number of days to forecast
   });
 
-  // Convert the data source results to a strongly-typed list
-  // Take only the first 24 hours (1 day) for display
+  // Use the strongly-typed model
   var items = AsList<OpenMeteoResult>(forecastDs).ToList();
 }
 
+@* Display message if the API didn't return any forecast data, then exit *@
 @if (!items.Any())
 {
-  // Display message if the API didn't return any forecast data
-  <p>No forecast data available</p>
+  <div class="alert alert-warning">
+    No forecast data available
+  </div>
+  return;
 }
-else
-{
-  <p>Showing hourly forecast for the next @items.Count hours</p>
-  
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Temperature (°C)</th>
-        <th>Weather</th>
-      </tr>
-    </thead>
-    <tbody>
+
+@* Show the forecast data *@
+<h3>
+  Weather Forecast for the next @items.Count hours
+</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>When</th>
+      <th>Temperature (°C)</th>
+      <th>Weather</th>
+    </tr>
+  </thead>
+  <tbody>
+    @* Each row displays one hour of forecast data *@
     @foreach (var item in items)
     {
-      @* Each row displays one hour of forecast data *@
       <tr>
         <td>@item.When</td>
         <td>@item.Temperature °C</td>
         <td>@item.Weather</td>
       </tr>
     }
-    </tbody>
-  </table>
-}
+  </tbody>
+</table>
