@@ -1,10 +1,11 @@
 using System;
 using System.Net;
+using AppCode.Extensions.OpenMeteo.Dto;
 using ToSic.Sxc.Services;
 
 namespace AppCode.Extensions.OpenMeteo
 {
-  public static class OpenMeteoHelpers
+  internal static class OpenMeteoHelpers
   {
     private const string BaseUrl = "https://api.open-meteo.com/v1/forecast";
 

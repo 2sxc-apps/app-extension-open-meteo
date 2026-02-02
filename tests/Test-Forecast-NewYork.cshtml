@@ -1,13 +1,23 @@
 @inherits Custom.Hybrid.RazorTyped
+@using System.Linq
+@using AppCode.Extensions.OpenMeteo
 @using AppCode.Extensions.OpenMeteo.Data
 
 @{
-  var items = AsList<OpenMeteoResult>(MyData)
-    .Take(24)
-    .ToList();
+  var forecast = Kit.Data.GetSource<OpenMeteoForecast>(
+    parameters: new
+    {
+      Latitude = 40.7128,
+      Longitude = -74.0060,
+      Timezone = "America/New_York",
+      ForecastDays = 2
+    }
+  );
+
+  var items = AsList<OpenMeteoResult>(forecast).Take(12).ToList();
 }
 
-<h3>Open-Meteo Forecast</h3>
+<h3>Forecast - New York (America/New_York, next @items.Count hours)</h3>
 
 <table class="table">
   <thead>

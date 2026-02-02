@@ -23,6 +23,25 @@ If that's not enough, you should start with a more sophisticated template such a
 
 ## History
 
+### 2026-02-02
+
+1. 2rb: Replaced hardcoded fields constant with `OpenMeteoConstants.ExpectedFields` in `OpenMeteoCurrent`
+1. 2rb: Removed unnecessary `Uri.EscapeDataString()` call for constant fields
+1. 2rb: Removed redundant null check in `OpenMeteoForecast.GetForecast()` (already handled in `ToForecastModels()`)
+1. 2rb: Changed `OpenMeteoHelpers` class from `public` to `internal`
+
+### 2026-01-30
+
+1. 2dm: made some internal classes internal
+1. 2dm: Moved DTOs to their own namespace
+1. 2dm: Removed unused usings
+1. 2dm: Some Todos for @2rb
+1. 2dm: Renamed `OpenMeteoResultModel` to `OpenMeteoResult`
+
+### 2026-01-28
+
+1. 2rb: added test views
+
 ### 2026-01-27
 
 1. 2rb: `OpenMeteoForecast` improved to work with `OpenMeteoResult`
@@ -30,7 +49,7 @@ If that's not enough, you should start with a more sophisticated template such a
 
 ### 2026-01-26
 
-1. 2dm: Simplified `OpenMeteoResultModel` to use the CustomModel base class
+1. 2dm: Simplified `OpenMeteoResult` to use the CustomModel base class
 1. 2rb: Moved test views to right location
 
 ### 2026-01-25

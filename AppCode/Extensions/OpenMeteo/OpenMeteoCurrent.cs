@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
 using ToSic.Eav.DataSource;
@@ -19,7 +18,6 @@ namespace AppCode.Extensions.OpenMeteo
     NiceName = "OpenMeteo Current Weather",
     UiHint = "Loads current weather data from Open-Meteo",
     Icon = "wb_sunny",
-    HelpLink = "https://open-meteo.com",
     ConfigurationType = nameof(OpenMeteoConfiguration)
   )]
   public class OpenMeteoCurrent : DataSource16
@@ -28,16 +26,15 @@ namespace AppCode.Extensions.OpenMeteo
     {
       ProvideOut(GetCurrent);
     }
+
     /// <summary>
     /// Fetches the current weather data from Open-Meteo
     /// and returns it as a single record.
     /// </summary>
     private object GetCurrent()
     {
-      const string fields = "temperature_2m,wind_speed_10m,weather_code";
-
       var result = OpenMeteoHelpers.Download(Kit, Latitude, Longitude, Timezone,
-        $"&current={Uri.EscapeDataString(fields)}"
+        $"&current={OpenMeteoConstants.ExpectedFields}"
       );
 
       return result.ToCurrentModel();

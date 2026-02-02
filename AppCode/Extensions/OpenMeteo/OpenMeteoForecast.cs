@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
 using ToSic.Eav.DataSource;
@@ -20,7 +19,6 @@ namespace AppCode.Extensions.OpenMeteo
     NiceName = "OpenMeteo Forecast",
     UiHint = "Loads hourly forecast data from Open-Meteo",
     Icon = "schedule",
-    HelpLink = "https://open-meteo.com",
     ConfigurationType = nameof(OpenMeteoConfiguration)
   )]
   public class OpenMeteoForecast : DataSource16
@@ -31,20 +29,14 @@ namespace AppCode.Extensions.OpenMeteo
     }
 
     private IEnumerable<object> GetForecast()
-{
-  var result = OpenMeteoHelpers.Download(
-    Kit,
-    Latitude,
-    Longitude,
-    Timezone,
-    $"&hourly={OpenMeteoConstants.ExpectedFields}" +
-    $"&forecast_days={ForecastDays}"
-  );
+    {
+      var result = OpenMeteoHelpers.Download(Kit, Latitude, Longitude, Timezone,
+        $"&hourly={OpenMeteoConstants.ExpectedFields}" +
+        $"&forecast_days={ForecastDays}"
+      );
 
-  return result.Hourly?.Time?.Length > 0
-    ? result.ToForecastModels()
-    : Array.Empty<object>();
-}
+      return result.ToForecastModels();
+    }
 
     [Configuration(Fallback = "47.1674")]
     public double Latitude => Configuration.GetThis(47.1674);

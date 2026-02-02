@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace AppCode.Extensions.OpenMeteo
+namespace AppCode.Extensions.OpenMeteo.Dto
 {
   internal class OpenMeteoDto
   {
@@ -24,7 +24,7 @@ namespace AppCode.Extensions.OpenMeteo
 
     public string Json { get; set; }
 
-    public object ToCurrentModel() => new
+    public object ToCurrentModel() => new 
     {
       When = Current?.Time,
       Current?.Temperature,

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace AppCode.Extensions.OpenMeteo
+namespace AppCode.Extensions.OpenMeteo.Dto
 {
   internal class MultipleResults
   {
