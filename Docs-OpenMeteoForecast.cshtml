@@ -3,28 +3,29 @@
 @using AppCode.Extensions.OpenMeteo
 @using AppCode.Extensions.OpenMeteo.Data
 
-
 <h3>Weather Forecast</h3>
 @{
   // Create a data source for hourly weather forecast from OpenMeteo API
   // Returns one record per hour for the specified number of forecast days
   var forecastDs = Kit.Data.GetSource<OpenMeteoForecast>(parameters: new {
-    Latitude = 47.1674,      // Latitude coordinate for the location (Vaduz, Liechtenstein)
-    Longitude = 9.4779,      // Longitude coordinate for the location
-    Timezone = "auto",       // Automatically detect timezone based on coordinates
-    ForecastDays = 2         // Number of days to forecast (default is 2)
+    Latitude = 47.1674,       // Latitude of the location (Vaduz, Liechtenstein)
+    Longitude = 9.4779,       // Longitude of the location
+    Timezone = "auto",        // Use timezone of coordinates
+    ForecastDays = 1          // Number of days to forecast (1 day = 24 hours)
   });
 
   // Convert the data source results to a strongly-typed list
   // Take only the first 24 hours (1 day) for display
-  var items = AsList<OpenMeteoResult>(forecastDs).Take(24).ToList();
+  var items = AsList<OpenMeteoResult>(forecastDs).ToList();
 }
 
-@if (!items.Any()) {
+@if (!items.Any())
+{
   // Display message if the API didn't return any forecast data
   <p>No forecast data available</p>
 }
-else {
+else
+{
   <p>Showing hourly forecast for the next @items.Count hours</p>
   
   <table class="table table-striped">
@@ -40,9 +41,9 @@ else {
     {
       @* Each row displays one hour of forecast data *@
       <tr>
-        <td>@item.When</td>            @* Timestamp for this forecast entry *@
-        <td>@item.Temperature</td>     @* Forecasted temperature in Celsius *@
-        <td>@item.Weather</td>         @* Human-readable weather condition *@
+        <td>@item.When</td>
+        <td>@item.Temperature °C</td>
+        <td>@item.Weather</td>
       </tr>
     }
     </tbody>

@@ -32,6 +32,10 @@ If that's not enough, you should start with a more sophisticated template such a
 1. 2rb: Added XML documentation to several files
 1. 2rb: Refactored `OpenMeteoHelpers.Download()` extracted URL building and JSON download into separate methods for clarity
 1. 2rb: Added views for documentation `Docs-OpenMeteoCurrent` and `Docs-OpenMeteoForecast`
+1. 2rb: Migrated from `WebClient` to `HttpClient` in `OpenMeteoHelpers.DownloadJson()`
+1. 2rb: Added static `HttpClient` instance with User-Agent header to `OpenMeteoHelpers`
+1. 2rb: Used `ConfigureAwait(false)` with synchronous result pattern
+1. 2rb: Added Title to Current View
 
 ### 2026-01-30
 

@@ -1,6 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using System.Linq
 @using AppCode.Extensions.OpenMeteo
+@using AppCode.Extensions.OpenMeteo.Data
+
+<h3>Open-Meteo Current</h3>
 
 @{
   var ds = Kit.Data.GetSource<OpenMeteoCurrent>(parameters: new {
@@ -9,17 +12,19 @@
     Timezone = "auto"
   });
 
-  var item = AsItem(ds.List.FirstOrDefault(), propsRequired: false);
+  var item = As<OpenMeteoResult>(ds);
 }
 
-@if (item == null) { <p>No data</p> }
-else {
+@if (item == null) 
+{ 
+  <p>No data</p>
+}
+else
+{
   <ul>
-    <li>Time: @item.String("When")</li>
-    <li>Temp: @item.Double("Temperature") °C</li>
-    <li>Wind: @item.Double("WindSpeed")</li>
-    <li>Code: @item.Int("WeatherCode")</li>
-    <li>Lat/Long: @item.Double("Latitude"), @item.Double("Longitude")</li>
-    <li>Timezone: @item.String("Timezone")</li>
+    <li>Time: @item.When</li>
+    <li>Temp: @item.Temperature °C</li>
+    <li>Code: @item.WeatherCode</li>
+    <li>Lat/Long: @item.Latitude, @item.Longitude</li>
   </ul>
 }

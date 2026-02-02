@@ -1,4 +1,3 @@
-using System;
 using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
 using ToSic.Eav.DataSource;
@@ -47,6 +46,6 @@ namespace AppCode.Extensions.OpenMeteo
     public double Longitude => Configuration.GetThis(9.4779);
 
     [Configuration(Fallback = "auto")]
-    public string Timezone => Configuration.GetThis();
+    public string Timezone => Configuration.GetThis<string>("auto");
   }
 }

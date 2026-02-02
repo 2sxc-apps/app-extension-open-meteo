@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using AppCode.Extensions.OpenMeteo.Data;
 using Custom.DataSource;
@@ -31,8 +30,7 @@ namespace AppCode.Extensions.OpenMeteo
     private IEnumerable<object> GetForecast()
     {
       var result = OpenMeteoHelpers.Download(Kit, Latitude, Longitude, Timezone,
-        $"&hourly={OpenMeteoConstants.ExpectedFields}" +
-        $"&forecast_days={ForecastDays}"
+        $"&hourly={OpenMeteoConstants.ExpectedFields}&forecast_days={ForecastDays}"
       );
 
       return result.ToForecastModels();
@@ -45,7 +43,7 @@ namespace AppCode.Extensions.OpenMeteo
     public double Longitude => Configuration.GetThis(9.4779);
 
     [Configuration(Fallback = "auto")]
-    public string Timezone => Configuration.GetThis();
+    public string Timezone => Configuration.GetThis<string>("auto");
 
     [Configuration(Fallback = "2")]
     public int ForecastDays => Configuration.GetThis(2);
