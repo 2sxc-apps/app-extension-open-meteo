@@ -11,10 +11,6 @@ namespace AppCode.Extensions.OpenMeteo
   internal static class OpenMeteoHelpers
   {
     private const string BaseUrl = "https://api.open-meteo.com/v1/forecast";
-    private static readonly HttpClient HttpClient = new HttpClient
-    {
-      DefaultRequestHeaders = { { "User-Agent", "2sxc OpenMeteo DataSource" } }
-    };
 
     /// <summary>
     /// Downloads weather data from the Open-Meteo API and deserializes the JSON response.
@@ -55,7 +51,11 @@ namespace AppCode.Extensions.OpenMeteo
     /// </summary>
     private static string DownloadJson(string url)
     {
-      var response = HttpClient.GetAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
+      using var httpClient = new HttpClient
+      {
+        DefaultRequestHeaders = { { "User-Agent", "2sxc OpenMeteo DataSource" } }
+      };
+      var response = httpClient.GetAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
       response.EnsureSuccessStatusCode();
       return response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
     }
