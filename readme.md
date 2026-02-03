@@ -25,7 +25,8 @@ If that's not enough, you should start with a more sophisticated template such a
 
 ### 2026-02-03
 
-1. 2rb: Added using to Httpclient
+1. 2rb: Added using to `Httpclient`
+1. 2dm: added icon
 
 ### 2026-02-02
 
