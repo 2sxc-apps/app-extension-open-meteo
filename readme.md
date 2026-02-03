@@ -23,6 +23,10 @@ If that's not enough, you should start with a more sophisticated template such a
 
 ## History
 
+### 2026-02-03
+
+1. 2rb: Added using to Httpclient
+
 ### 2026-02-02
 
 1. 2rb: Replaced hardcoded fields constant with `OpenMeteoConstants.ExpectedFields` in `OpenMeteoCurrent`
