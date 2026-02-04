@@ -1,8 +1,8 @@
 {
   "nameId": "afd256f1-6dae-415b-9d26-0e3cfa6dc9eb",
   "name": "Open Meteo (DataSource)",
-  "teaser": "",
-  "description": "",
+  "teaser": "Real-time weather data for any location worldwide",
+  "description": "Real-time and forecast weather data into your 2sxc apps using the Open-Meteo API. Get current conditions and multi-day forecasts with timezone support, customizable parameters, and flexible query options.",
   "createdBy": "2sic",
   "copyright": "",
   "linkMain": "",
