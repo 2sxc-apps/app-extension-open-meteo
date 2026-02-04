@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Extensions.OpenMeteo
+@using AppCode.Extensions.OpenMeteo.Data
+
+<h3>Open-Meteo Current (°F)</h3>
+
+@{
+  var ds = Kit.Data.GetSource<OpenMeteoCurrent>(parameters: new {
+    Latitude = 47.3769,
+    Longitude = 8.5417,
+    Timezone = "auto"
+  });
+
+  var item = As<OpenMeteoResult>(ds);
+}
+
+@if (item == null) 
+{ 
+  <p>No data</p>
+}
+else
+{
+  <ul>
+    <li>Time: @item.When</li>
+    <li>Temp: @item.TemperatureFahrenheit °F</li>
+    <li>Temp (°C): @item.Temperature</li>
+    <li>Lat/Long: @item.Latitude, @item.Longitude</li>
+  </ul>
+}

@@ -1,4 +1,4 @@
-namespace AppCode.Data
+namespace AppCode.Extensions.OpenMeteo.Data
 {
   public partial class OpenMeteoResult
   {
